@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery Courier Selection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color:brown;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid burlywood;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #8B4513; /* Brownish color theme */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #A0522D;
+    }
+    .thank-you-message {
+      display: none;
+      font-size: 18px;
+      color: #333;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="courierForm">
+      <label for="courier">Select Delivery Courier:</label>
+      <select name="courier" id="courier" required>
+        <option value="">-- Select a Courier --</option>
+        <option value="grab">Grab</option>
+        <option value="foodpanda">Food Panda</option>
+      </select>
+      <button type="submit">Confirm Courier</button>
+    </form>
+    <div class="thank-you-message" id="thankYouMessage">
+      Thank you! Your order has been submitted. We'll notify you when your order is on its way with <span id="selectedCourier"></span>.
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('courierForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevents form submission
+      var selectedCourier = document.getElementById('courier').value;
+
+      if (selectedCourier) {
+        document.getElementById('thankYouMessage').style.display = 'block';
+        document.getElementById('selectedCourier').textContent = selectedCourier.charAt(0).toUpperCase() + selectedCourier.slice(1);
+        document.getElementById('courierForm').style.display = 'none'; // Hides the form after submission
+      }
+    });
+  </script>
+</body>
+</html>
